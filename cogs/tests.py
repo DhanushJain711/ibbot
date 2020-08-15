@@ -20,6 +20,10 @@ class Tests(commands.Cog):
 
     #commands
 
+    @commands.command()
+    async def hello(self, ctx, *, name):
+        await ctx.send(f'Fuck you {name}')
+
     @commands.command(aliases = ['8ball'])
     async def _8ball(self, ctx, *, question):
         responses = ["It is certain.",
