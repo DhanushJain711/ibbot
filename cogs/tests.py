@@ -11,7 +11,7 @@ class Tests(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print('Bot ready')
+        print('Tests loaded')
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx,error):
