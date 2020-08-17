@@ -13,10 +13,10 @@ class Tests(commands.Cog):
     async def on_ready(self):
         print('Tests loaded')
 
-    @commands.Cog.listener()
-    async def on_command_error(self, ctx,error):
-        if isinstance(error, commands.CommandNotFound):
-            await ctx.send('This is an invalid command. Type "!help" for list of commands.')
+    #@commands.Cog.listener()
+    #async def on_command_error(self, ctx,error):
+    #    if isinstance(error, commands.CommandNotFound):
+    #        await ctx.send('This is an invalid command. Type "!help" for list of commands.')
 
     #commands
 
