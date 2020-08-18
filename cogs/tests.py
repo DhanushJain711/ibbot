@@ -49,7 +49,7 @@ class Tests(commands.Cog):
         await ctx.send(random.choice(responses))
 
     @commands.command()
-    async def add(self, ctx, *, nums):
+    async def addall(self, ctx, *, nums):
 
         numbers = list(map(int, nums.strip().split()))
         result = 0
@@ -75,6 +75,35 @@ class Tests(commands.Cog):
     async def user(self, ctx):
         author = str(ctx.author)
         await ctx.send(f'Hi, {author[:-5]}')
+
+    @commands.group(invoke_without_command = True)
+    async def calc(self, ctx):
+        await ctx.send('Add, substract, multiply, or divide')
+
+    @calc.command()
+    async def add(self, ctx, *, nums):
+        numbers = list(map(int, nums.strip().split()))
+        result = numbers[0] + numbers[1]
+        await ctx.send(result)
+
+    @calc.command()
+    async def sub(self, ctx, *, nums):
+        numbers = list(map(int, nums.strip().split()))
+        result = numbers[0] - numbers[1]
+        await ctx.send(result)
+
+    @calc.command()
+    async def mult(self, ctx, *, nums):
+        numbers = list(map(int, nums.strip().split()))
+        result = numbers[0] * numbers[1]
+        await ctx.send(result)
+
+    @calc.command()
+    async def div(self, ctx, *, nums):
+        numbers = list(map(int, nums.strip().split()))
+        result = numbers[0] / numbers[1]
+        await ctx.send(result)
+
 
 
 
