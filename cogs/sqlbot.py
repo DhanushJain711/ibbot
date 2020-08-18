@@ -28,10 +28,10 @@ def update_pay(last,pay):
                     WHERE last = :last""",
                     {'last': last, 'pay': pay})
 
-def remove_emp(emp):
+def remove_emp(first):
     with conn:
-        c.execute("DELETE from employees WHERE first = :first AND last = :last",
-                    {'first': emp.first, 'last': emp.last,})
+        c.execute("DELETE from employees WHERE first = :first",
+                    {'first': first})
 
 class Employee:
 
@@ -60,10 +60,6 @@ class Sqlbot(commands.Cog):
         print('Sqlbot loaded')
 
     @commands.command()
-    async def bruh(self, ctx):
-        await ctx.send('bruh')
-
-    @commands.command()
     async def create(self, ctx, *, name):
         names = name.strip().split()
         emp1 = Employee(names[0], names[1], int(names[2]))
@@ -80,6 +76,11 @@ class Sqlbot(commands.Cog):
         infos = info.strip().split()
         update_pay(infos[0], int(infos[1]))
         await ctx.send("Set {}'s pay to {}".format(infos[0] , infos[1]))
+
+    @commands.command()
+    async def delete(self, ctx, *, first):
+        remove_emp(first)
+        await ctx.send(f'Deleted {first} from database')
 
 
 
