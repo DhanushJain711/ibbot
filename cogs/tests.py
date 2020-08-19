@@ -13,16 +13,22 @@ class Tests(commands.Cog):
     async def on_ready(self):
         print('Tests loaded')
 
-    #@commands.Cog.listener()
-    #async def on_command_error(self, ctx,error):
-    #    if isinstance(error, commands.CommandNotFound):
-    #        await ctx.send('This is an invalid command. Type "!help" for list of commands.')
+    @commands.Cog.listener()
+    async def on_command_error(self, ctx,error):
+        if isinstance(error, commands.CommandNotFound):
+            await ctx.send('This is an invalid command. Type "!help" for list of commands.')
 
-    #commands
+    @commands.Cog.listener()
+    async def on_command_error(self, ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            await ctx.send('Please enter necessary parameters')
 
     @commands.command()
     async def hello(self, ctx, *, name):
-        await ctx.send(f'Fuck you {name}')
+        if (name == 'hardik'):
+            await ctx.send(f'Happy birthday {name}')
+        else:
+            await ctx.send(f'Fuck you {name}')
 
     @commands.command(aliases = ['8ball'])
     async def _8ball(self, ctx, *, question):
@@ -74,7 +80,7 @@ class Tests(commands.Cog):
     @commands.command()
     async def user(self, ctx):
         author = str(ctx.author)
-        await ctx.send(f'Hi, {author[:-5]}')
+        await ctx.send(f'Hi, {author[:-5]}, with code {author[-4:]}')
 
     @commands.group(invoke_without_command = True)
     async def calc(self, ctx):
